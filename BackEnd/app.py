@@ -16,6 +16,7 @@ Users = []
 
 # Datos ingresados
 Users.append(User(1,'Angel', '55555-9', '5-55 zona Roja', 'angel@email.com', 'root', 'root', 1))
+Users.append(User(2,'Geovanny', '55555-8', '5-56 zona Roja', 'geo@email.com', 'geo', 'geo', 1))
 #Users.append(User(2,'Diego', 'Pinto', 'diego', '123', 2))
 
 # --------------- INICIO RUTAS ---------------
