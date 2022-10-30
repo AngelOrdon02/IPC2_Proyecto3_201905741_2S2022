@@ -4,6 +4,10 @@ import requests
 
 import json
 
+# Home
+def home(request):
+    return render(request, "homeView.html", {})
+
 # Create your views here.
 def users(request):
 
