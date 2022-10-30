@@ -19,5 +19,5 @@ def users(request):
     # return render(request, "users.html")
     # return render(request, "users.html", {'users': users})
     # return render(request, "users.html", {'users': users['users']})
-    return render(request, "views/administration/usersView.html", {'users': users['users']})
+    return render(request, "administration/usersView.html", {'users': users['users']})
     pass
