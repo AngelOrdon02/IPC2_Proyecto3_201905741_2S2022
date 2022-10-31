@@ -29,7 +29,8 @@
                     Login
                 </div>
             </h2>
-            <form class="ui large form">
+            <form class="ui large form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="ui stacked segment">
                     <div class="field">
                         <div class="ui left icon input">
@@ -43,20 +44,28 @@
                             <input type="password" name="password" id="password" placeholder="Contraseña">
                         </div>
                     </div>
-                    <div class="ui fluid large teal button" onclick="login()">Login</div>
+                    <!-- <div class="ui fluid large teal button" onclick="login()">Login</div> -->
+                    <button class="ui fluid large teal button" type="submit">Login</button>
                 </div>
 
-                <div class="ui error message"></div>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <!-- <div class="ui error message"></div> -->
 
             </form>
 
-            <div class="ui message">
+            <!-- <div class="ui message">
                 ¿Olvidaste tu contraseña? <a onclick="recover()"> Recuperala</a>
-            </div>
+            </div> -->
 
-            <div class="ui message">
+            <!-- <div class="ui message">
                 ¿Eres nuevo? <a onclick="register()"> Registrate</a>
-            </div>
+            </div> -->
         </div>
     </div>
 
