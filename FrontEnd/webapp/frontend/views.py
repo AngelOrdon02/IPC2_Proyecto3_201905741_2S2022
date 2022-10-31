@@ -8,6 +8,10 @@ import json
 def home(request):
     return render(request, "homeView.html", {})
 
+# Login
+def login_view(request):
+    return render(request, "auth/loginView.html", {})
+
 # Create your views here.
 def users(request):
 
