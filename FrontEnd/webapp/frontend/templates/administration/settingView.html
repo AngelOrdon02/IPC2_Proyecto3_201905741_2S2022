@@ -22,17 +22,25 @@
     </div>
 
     <div class="row">
-        <div class="eleven wide column">
+        <div class="thirteen wide column">
             <div class="position_right">
                 <!-- <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     
                 </form> -->
-                <input type="file" id="file_1" name="file_1" accept="text/xml">
+                <input type="file" id="file_1" name="file_1" accept="text/xml" onchange="fileUpload_file()">
                     <button class="ui green button" onclick="fileUpload_1()">
                         <i class="cloud upload icon"></i>
                         Cargar archivo al sistema
                     </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="thirteen wide column">
+            <div class="position_right">
+                <textarea id="xmldata" name="xmldata" rows="20" cols="70"></textarea>
             </div>
         </div>
     </div>

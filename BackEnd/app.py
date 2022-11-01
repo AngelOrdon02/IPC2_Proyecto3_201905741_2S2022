@@ -111,10 +111,11 @@ def selectAllUsers():
 def msg_config():
     
     # Codigo
-    request.json['data']
+    # data = request.json()
+    data_answer = request.json['data']
     
-    answer = "hola"
-    print(answer)
+    answer = jsonify({'message': data_answer})
+    return (answer)
 
 # --------------- FIN RUTAS ---------------
 
