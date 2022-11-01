@@ -104,6 +104,18 @@ def selectAllUsers():
 
     return (answer)
 
+# --------------- Configuraciones ---------------
+
+# msg_config
+@app.route('/msg_config', methods=['POST'])
+def msg_config():
+    
+    # Codigo
+    request.json['data']
+    
+    answer = "hola"
+    print(answer)
+
 # --------------- FIN RUTAS ---------------
 
 # Para que se ejecute el API

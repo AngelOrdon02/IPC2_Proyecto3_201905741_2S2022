@@ -5,6 +5,7 @@ import requests
 import json
 
 from django.contrib import messages
+import xml.etree.ElementTree as ET
 
 # Home
 def home(request):
@@ -43,7 +44,9 @@ def login_view(request):
 
     return render(request, "auth/loginView.html", {})
 
-# Create your views here.
+# --------------- Administration ---------------
+
+# Metodo para la vista userView.html
 def users(request):
 
     #pull data from third party rest api
@@ -59,4 +62,26 @@ def users(request):
     # return render(request, "users.html", {'users': users})
     # return render(request, "users.html", {'users': users['users']})
     return render(request, "administration/usersView.html", {'users': users['users']})
-    pass
+
+# Metodo para la vista settingView.html
+def setting(request):
+
+    # if request.method == 'POST':
+    #     filepath = request.FILES['file']
+    #     tree = ET.parse(filepath)
+    #     root = tree.getroot()
+        
+    #     #cont = 0
+    #     for r in root:
+    #         means_data = r[0]
+
+    #         for m in means_data:
+
+    #             mean_id = m.attrib
+    #             print(str(mean_id))
+    #         #mean_id = r.attrib['id']
+    #         # means_name = r[0]
+    #         # cont += 1
+    #         # print("data: " + str(cont))
+
+    return render(request, "administration/settingView.html", {})

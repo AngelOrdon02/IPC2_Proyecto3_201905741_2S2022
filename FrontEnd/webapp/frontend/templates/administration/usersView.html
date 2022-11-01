@@ -1,6 +1,13 @@
 {% extends 'administration/base_admin.html' %}
 
+<!-- Titulo de la pestaña -->
 {% block title %}<title>Usuarios - Administrador</title>{% endblock %}
+
+<!-- Activador del item -->
+{% block active2 %}active{% endblock %}
+
+<!-- Titulo de la pagina -->
+{% block titlepage %}Estatus de usuarios{% endblock %}
 
 {% block content %}
 <div class="ui grid">
@@ -10,19 +17,17 @@
         </div>
     </div>
     <div class="row">
-        <div class="five wide column">
+        <!-- <div class="five wide column">
             <button class="ui brown button" onclick="report()">
                 <i class="file alternate icon"></i>
                 Reporte PDF
             </button>
-        </div>
-        <div class="eleven wide column">
-            <div class="position_right">
-                <button class="ui green button" onclick="newUserAdmin()">
-                    <i class="user plus icon"></i>
-                    Nuevo usuario administrador
-                </button>
-            </div>
+        </div> -->
+        <div class="five wide column">
+            <button class="ui green button" onclick="newUserAdmin()">
+                <i class="user plus icon"></i>
+                Nuevo usuario administrador
+            </button>
         </div>
     </div>
 </div>

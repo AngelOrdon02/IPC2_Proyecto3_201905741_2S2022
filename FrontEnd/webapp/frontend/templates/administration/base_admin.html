@@ -73,7 +73,8 @@
                     </a>
                     <!-- <a class="item" onclick="goPrincipalView()">Principal</a> -->
                     <!-- <a class="item" onclick="goRequestsView()">Solicitudes</a> -->
-                    <a class="active item" onclick="goUsersView()">Usuarios</a>
+                    <a class="{% block active1 %}{% endblock %} item" onclick="goConfigView()">Configuración</a>
+                    <a class="{% block active2 %}{% endblock %} item" onclick="goUsersView()">Usuarios</a>
                     <label class="right item"></label>
                     <label class="right item"></label>
                     <label class="right item"></label>
@@ -90,7 +91,8 @@
 
             <div class="ui text container">
                 <h1 class="ui inverted header">
-                    Estatus de usuarios
+                    <!-- Estatus de usuarios -->
+                    {% block titlepage %}{% endblock %}
                 </h1>
                 <!-- <h2>Do whatever you want when you want to.</h2> -->
             </div>
@@ -145,6 +147,33 @@
                 location.href = "http://localhost:8000"
             });
 
+    }
+
+    function fileUpload_1() {
+        // input = $('#file_1').value();
+        // input = document.getElementById('file_1');
+
+        // document.getElementById("file_1").value;
+
+        // console.log("Data: " + input);
+        // input = document.getElementById('file_1').files[0];
+        // console.log("Data: " + input);
+        let selected = document.getElementById("file_1").files[0];
+
+        let reader = new FileReader();
+        reader.addEventListener("loadend", () => {
+            // document.getElementById("demoShowA").innerHTML = reader.result;
+            console.log("Data: " + reader.result)
+        });
+        reader.readAsText(selected);
+    }
+
+    function goConfigView() {
+        location.href = "http://localhost:8000/setting"
+    }
+
+    function goUsersView() {
+        location.href = "http://localhost:8000/users"
     }
     // function logout() {
     //     location.href = "http://localhost:8000"

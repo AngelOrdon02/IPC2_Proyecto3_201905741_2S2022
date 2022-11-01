@@ -1,0 +1,169 @@
+{% extends 'administration/base_admin.html' %}
+
+<!-- Titulo de la pestaña -->
+{% block title %}<title>Configuración - Administrador</title>{% endblock %}
+
+<!-- Activador del item -->
+{% block active1 %}active{% endblock %}
+
+<!-- Titulo de la pagina -->
+{% block titlepage %}Configuración{% endblock %}
+
+{% block content %}
+<div class="ui grid">
+    <div class="row">
+        <div class="five wide column">
+            <h3>Carga de configuraciones</h3>
+        </div>
+    </div>
+
+    <div class="ui horizontal divider">
+        Enviar mensaje de configuración
+    </div>
+
+    <div class="row">
+        <div class="eleven wide column">
+            <div class="position_right">
+                <!-- <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                </form> -->
+                <input type="file" id="file_1" name="file_1" accept="text/xml">
+                    <button class="ui green button" onclick="fileUpload_1()">
+                        <i class="cloud upload icon"></i>
+                        Cargar archivo al sistema
+                    </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui horizontal divider">
+        Enviar mensaje de consumo
+    </div>
+
+    <div class="row">
+        <div class="eleven wide column">
+            <div class="position_right">
+                <input type="file" id="file_2">
+                <button class="ui green button">
+                    <i class="cloud upload icon"></i>
+                    Cargar archivo al sistema
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- <script type="text/javascript">
+    function fileUpload_1() {
+        // input = $('#file_1').value();
+        // input = document.getElementById('file_1');
+
+        // document.getElementById("file_1").value;
+
+        // console.log("Data: " + input);
+        console.log("Hola");
+    }
+</script> -->
+
+<!-- <script>
+    function fileUpload_1() {
+        // input = $('#file_1').value();
+        // input = document.getElementById('file_1');
+
+        // document.getElementById("file_1").value;
+
+        // console.log("Data: " + input);
+        console.log("Hola");
+    }
+
+    async function fileUpload() {
+        //Usamos $(nombre del input donde esta el archivo).parse
+        $('#file_1').parse({
+            config: {
+                //Agregamos las configuraciones y le decimos
+                //Quien es el delimitador y que hara luego de leer el archivo
+                //En este caso usamos delimitador "," y que haga el metodo GuardarCanciones
+                delimiter: ";",
+                complete: await saveSongs,
+            },
+            //Esto es lo que hara antes de leer el archivo
+            before: function(file, inputElem) {
+                console.log("Parsing file...", file);
+            },
+            //Esto es lo que hara si encuentra un error
+            error: function(err, file) {
+                console.log("ERROR:", err, file);
+            },
+            //Esto es lo que hara cuando termina de parsear el archivo
+            complete: function() {
+                console.log("Done with all files");
+            }
+        });
+    }
+
+    async function saveSongs(results) {
+        //En este caso results es un objeto con nuestros datos parseados
+        //Y el atributo .data es el que tiene lo que necesitamos
+        console.log(results.data)
+        var data = results.data;
+        var val = true
+            //Data al final termina siendo un arreglo de arreglos
+            //data[i] = La fila del archivo csv
+            //data[i][n] = Donde n representa la columan en cuestion
+            //Leemos las filas de data
+        for (i = 0; i < data.length; i++) {
+            //Hacemos el proceso necesarioa para guardar un dato en la API
+            var nombre = data[i][0]
+            var artista = data[i][1]
+            var album = data[i][2]
+            var fecha = data[i][3]
+            var imagen = data[i][4]
+            var spotify = data[i][5]
+            var youtube = data[i][6]
+                // State (estado) es 1 para que este activo
+            var state = 1;
+
+            var objeto = {
+                'name': nombre,
+                'artist': artista,
+                'album': album,
+                'date': fecha,
+                'image': imagen,
+                'link_spotify': spotify,
+                'link_youtube': youtube,
+                'state': state
+            }
+            console.log(objeto)
+                //Aplicamos nuestro metodo magico con sus 3 metodos, then, catch, then
+            fetch('http://localhost:3000/songs', {
+                    method: 'POST',
+                    body: JSON.stringify(objeto),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(res => res.json())
+                .catch(error => {
+                    console.error('Error:', error)
+                        //alert("Ocurrio un error al consumir la API, revise la consola")
+                    swal("¡Ocurrio un error!", "¡No se pudo subir el archivo!", "error");
+                    val = false
+                })
+                .then(response => {
+                    console.log('Success:', response);
+                })
+        }
+        //En mi caso, como yo lo programe, es que si hay un error a la hora de guardar las canciones
+        //No me muestre nada, pero si las guarda, esto es meramente visual
+        if (val == true) {
+            //Usamos el alert para mandar respuestas del navegador hacia el usuario
+            //Unicamente tenemos que mandar el texto
+            //alert("Se agregaron las canciones exitosamente")
+            swal("¡Archivo subido con éxito!", "Canciones agregadas", "success")
+                .then((value) => {
+                    init();
+                });
+        }
+    }
+</script> -->
