@@ -78,6 +78,7 @@
                     <a class="{% block active3 %}{% endblock %} item" onclick="goResourcesView()">Recursos</a>
                     <a class="{% block active4 %}{% endblock %} item" onclick="goCategoriesView()">Categorias</a>
                     <a class="{% block active5 %}{% endblock %} item" onclick="goSettingsView()">Configuraciones</a>
+                    <a class="{% block active6 %}{% endblock %} item" onclick="goInstancesView()">Instancias</a>
                     <label class="right item"></label>
                     <label class="right item"></label>
                     <label class="right item"></label>
@@ -248,6 +249,14 @@
 
     function newSetting() {
         location.href = "http://localhost:8000/setting_new"
+    }
+
+    function goInstancesView() {
+        location.href = "http://localhost:8000/instances"
+    }
+
+    function newInstance() {
+        location.href = "http://localhost:8000/instance_new"
     }
 </script>
 

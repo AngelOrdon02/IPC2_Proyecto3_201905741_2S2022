@@ -185,3 +185,39 @@ def add_setting(request):
         return redirect('settings')
 
     return render(request, "administration/settingNewView.html", {})
+
+# Metodo para la vista instancesView.html
+def instances(request):
+
+    response = requests.get('http://127.0.0.1:3000/instances')
+
+    #convert reponse data into json
+    instances = response.json()
+
+    return render(request, "administration/instancesView.html", {'instances': instances['instances']})
+
+# Create instance
+def add_instance(request):
+    
+    if request.method == 'POST':
+        id = request.POST.get('id', None)
+        name = request.POST.get('name', None)
+        condition = request.POST.get('condition', None)
+        start = request.POST.get('start', None)
+        end = request.POST.get('end', None)
+        id_config = request.POST.get('id_config', None)
+        id_user = request.POST.get('id_user', None)
+
+        params = {
+            'id': id,
+            'name': name,
+            'condition': condition,
+            'start': start,
+            'end': end,
+            'id_config': id_config,
+            'id_user': id_user
+            }
+        response = requests.post('http://127.0.0.1:3000/instances', json = params)
+        return redirect('instances')
+
+    return render(request, "administration/instanceNewView.html", {})

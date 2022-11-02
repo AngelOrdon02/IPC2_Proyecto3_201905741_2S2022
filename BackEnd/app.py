@@ -9,6 +9,9 @@ from user import User
 from resource import Resource
 from category import Category
 from setting import Setting
+from instance import Instance
+
+# Almacenamiento de datos
 
 app = Flask(__name__)
 
@@ -19,6 +22,7 @@ Users = []
 Resources = []
 Categories = []
 Settings = []
+Instances = []
 
 # Datos ingresados
 Users.append(User(1,'Angel', '55555-9', '5-55 zona Roja', 'angel@email.com', 'root', 'root', 1))
@@ -29,6 +33,8 @@ Resources.append(Resource(1, 'Nucleo A', 'CPU', 'Ghz', 'Procesamiento', 0.03, 1)
 Categories.append(Category(1, 'Inter', 'Ejemplo de una descripción', 'Medio'))
 
 Settings.append(Setting(1, 'Default', 'Configuración por default', 'Dim', 50, 1))
+
+Instances.append(Instance(1, 'WebApp CAT', 'Vigente', '10/06/2022 13:13', '02/11/2022 13:13', 1, '55555-8'))
 
 # --------------- INICIO RUTAS ---------------
 
@@ -271,6 +277,49 @@ def insertSetting():
     )
     Settings.append(new)
     answer = jsonify({'message': 'Added setting'})
+
+    return (answer)
+
+# --------------- Instance ---------------
+
+# Get instaces
+@app.route('/instances', methods=['GET'])
+def selectAllInstances():
+    global Instances
+    Data = []
+
+    for instance in Instances:
+        Fact = {
+            'id': instance.getId(),
+            'name': instance.getName(),
+            'condition': instance.getCondition(),
+            'start': instance.getStart(),
+            'end': instance.getEnd(),
+            'id_config': instance.getId_config(),
+            'id_user': instance.getId_user()
+        }
+        Data.append(Fact)
+    
+    answer = jsonify({'instances': Data})
+
+    return (answer)
+
+# Post Instance
+@app.route('/instances', methods=['POST'])
+def insertInstane():
+    global Instances
+
+    new = Instance(
+        request.json['id'],
+        request.json['name'],
+        request.json['condition'],
+        request.json['start'],
+        request.json['end'],
+        request.json['id_config'],
+        request.json['id_user']
+    )
+    Instances.append(new)
+    answer = jsonify({'message': 'Added instance'})
 
     return (answer)
 
