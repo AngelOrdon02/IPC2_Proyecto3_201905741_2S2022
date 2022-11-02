@@ -15,4 +15,6 @@ urlpatterns = [
     path('resource_new', views.add_resource, name = 'resource_new'),
     path('categories', views.categories, name = 'categories'),
     path('category_new', views.add_category, name = 'category_new'),
+    path('settings', views.settings, name = 'settings'),
+    path('setting_new', views.add_setting, name = 'setting_new'),
 ]

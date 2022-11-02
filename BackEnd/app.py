@@ -8,6 +8,7 @@ import json
 from user import User
 from resource import Resource
 from category import Category
+from setting import Setting
 
 app = Flask(__name__)
 
@@ -17,6 +18,7 @@ CORS(app)
 Users = []
 Resources = []
 Categories = []
+Settings = []
 
 # Datos ingresados
 Users.append(User(1,'Angel', '55555-9', '5-55 zona Roja', 'angel@email.com', 'root', 'root', 1))
@@ -25,6 +27,8 @@ Users.append(User(2,'Geovanny', '55555-8', '5-56 zona Roja', 'geo@email.com', 'g
 Resources.append(Resource(1, 'Nucleo A', 'CPU', 'Ghz', 'Procesamiento', 0.03, 1))
 
 Categories.append(Category(1, 'Inter', 'Ejemplo de una descripción', 'Medio'))
+
+Settings.append(Setting(1, 'Default', 'Configuración por default', 'Dim', 50, 1))
 
 # --------------- INICIO RUTAS ---------------
 
@@ -194,7 +198,7 @@ def insertResource():
 
 # --------------- Category ---------------
 
-# Get resource
+# Get categoies
 @app.route('/categories', methods=['GET'])
 def selectAllCategories():
     global Categories
@@ -226,6 +230,47 @@ def insertCategory():
     )
     Categories.append(new)
     answer = jsonify({'message': 'Added category'})
+
+    return (answer)
+    
+# --------------- Setting ---------------
+
+# Get settings
+@app.route('/settings', methods=['GET'])
+def selectAllSettings():
+    global Settings
+    Data = []
+
+    for setting in Settings:
+        Fact = {
+            'id': setting.getId(),
+            'name': setting.getName(),
+            'description': setting.getDescription(),
+            'dimensional': setting.getDimensional(),
+            'cost': setting.getCost(),
+            'id_category': setting.getId_category()
+        }
+        Data.append(Fact)
+    
+    answer = jsonify({'settings': Data})
+
+    return (answer)
+
+# Post Setting
+@app.route('/settings', methods=['POST'])
+def insertSetting():
+    global Settings
+
+    new = Setting(
+        request.json['id'],
+        request.json['name'],
+        request.json['description'],
+        request.json['dimensional'],
+        request.json['cost'],
+        request.json['id_category']
+    )
+    Settings.append(new)
+    answer = jsonify({'message': 'Added setting'})
 
     return (answer)
 

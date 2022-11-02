@@ -151,3 +151,37 @@ def add_category(request):
         return redirect('categories')
 
     return render(request, "administration/categoryNewView.html", {})
+
+# Metodo para la vista settingsView.html
+def settings(request):
+
+    response = requests.get('http://127.0.0.1:3000/settings')
+
+    #convert reponse data into json
+    settings = response.json()
+
+    return render(request, "administration/settingsView.html", {'settings': settings['settings']})
+
+# Create setting
+def add_setting(request):
+    
+    if request.method == 'POST':
+        id = request.POST.get('id', None)
+        name = request.POST.get('name', None)
+        description = request.POST.get('description', None)
+        dimensional = request.POST.get('dimensional', None)
+        cost = request.POST.get('cost', None)
+        id_category = request.POST.get('id_category', None)
+
+        params = {
+            'id': id,
+            'name': name,
+            'description': description,
+            'dimensional': dimensional,
+            'cost': cost,
+            'id_category': id_category
+            }
+        response = requests.post('http://127.0.0.1:3000/settings', json = params)
+        return redirect('settings')
+
+    return render(request, "administration/settingNewView.html", {})

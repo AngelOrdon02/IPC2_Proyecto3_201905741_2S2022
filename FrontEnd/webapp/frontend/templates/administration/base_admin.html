@@ -73,10 +73,11 @@
                     </a>
                     <!-- <a class="item" onclick="goPrincipalView()">Principal</a> -->
                     <!-- <a class="item" onclick="goRequestsView()">Solicitudes</a> -->
-                    <a class="{% block active1 %}{% endblock %} item" onclick="goConfigView()">Configuración</a>
+                    <a class="{% block active1 %}{% endblock %} item" onclick="goConfigView()">Config (XML)</a>
                     <a class="{% block active2 %}{% endblock %} item" onclick="goUsersView()">Usuarios</a>
                     <a class="{% block active3 %}{% endblock %} item" onclick="goResourcesView()">Recursos</a>
                     <a class="{% block active4 %}{% endblock %} item" onclick="goCategoriesView()">Categorias</a>
+                    <a class="{% block active5 %}{% endblock %} item" onclick="goSettingsView()">Configuraciones</a>
                     <label class="right item"></label>
                     <label class="right item"></label>
                     <label class="right item"></label>
@@ -239,6 +240,14 @@
 
     function newCategory() {
         location.href = "http://localhost:8000/category_new"
+    }
+
+    function goSettingsView() {
+        location.href = "http://localhost:8000/settings"
+    }
+
+    function newSetting() {
+        location.href = "http://localhost:8000/setting_new"
     }
 </script>
 
