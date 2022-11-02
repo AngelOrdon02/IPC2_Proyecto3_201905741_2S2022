@@ -19,7 +19,6 @@ Resources = []
 # Datos ingresados
 Users.append(User(1,'Angel', '55555-9', '5-55 zona Roja', 'angel@email.com', 'root', 'root', 1))
 Users.append(User(2,'Geovanny', '55555-8', '5-56 zona Roja', 'geo@email.com', 'geo', 'geo', 1))
-#Users.append(User(2,'Diego', 'Pinto', 'diego', '123', 2))
 
 Resources.append(Resource(1, 'Nucleo A', 'CPU', 'Ghz', 'Procesamiento', 0.03))
 
@@ -79,8 +78,6 @@ def loginUser():
 
     answer = jsonify({'message': 'Login process', 'state': state, 'id': id_user})
     return (answer)
-    #answer = jsonify({'message': 'Added user'})
-    #return (answer)
 
 # --------------- User ---------------
 
@@ -104,7 +101,6 @@ def selectAllUsers():
         Data.append(Fact)
     
     answer = jsonify({'users': Data})
-    #answer = jsonify(Data)
 
     return (answer)
 
@@ -113,12 +109,7 @@ def selectAllUsers():
 def insertUser():
     global Users
 
-    # obteniendo el ultimo id para tener un correlativo
-    # user = Users[-1]
-    # position = user.getId() + 1
-
     new = User(
-        # position,
         request.json['id'],
         request.json['name'],
         request.json['nit'],
@@ -175,7 +166,6 @@ def selectAllResources():
         Data.append(Fact)
     
     answer = jsonify({'resources': Data})
-    #answer = jsonify(Data)
 
     return (answer)
 
