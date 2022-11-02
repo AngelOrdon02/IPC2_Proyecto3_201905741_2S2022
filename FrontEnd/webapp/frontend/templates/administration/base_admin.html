@@ -76,6 +76,7 @@
                     <a class="{% block active1 %}{% endblock %} item" onclick="goConfigView()">Configuración</a>
                     <a class="{% block active2 %}{% endblock %} item" onclick="goUsersView()">Usuarios</a>
                     <a class="{% block active3 %}{% endblock %} item" onclick="goResourcesView()">Recursos</a>
+                    <a class="{% block active4 %}{% endblock %} item" onclick="goCategoriesView()">Categorias</a>
                     <label class="right item"></label>
                     <label class="right item"></label>
                     <label class="right item"></label>
@@ -230,6 +231,14 @@
 
     function newResource() {
         location.href = "http://localhost:8000/resource_new"
+    }
+
+    function goCategoriesView() {
+        location.href = "http://localhost:8000/categories"
+    }
+
+    function newCategory() {
+        location.href = "http://localhost:8000/category_new"
     }
 </script>
 

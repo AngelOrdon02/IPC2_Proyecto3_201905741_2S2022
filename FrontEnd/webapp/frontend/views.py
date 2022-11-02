@@ -121,3 +121,33 @@ def add_resource(request):
         return redirect('resources')
 
     return render(request, "administration/resourceNewView.html", {})
+
+# Metodo para la vista categoriesView.html
+def categories(request):
+
+    response = requests.get('http://127.0.0.1:3000/categories')
+
+    #convert reponse data into json
+    categories = response.json()
+
+    return render(request, "administration/categoriesView.html", {'categories': categories['categories']})
+
+# Create category
+def add_category(request):
+    
+    if request.method == 'POST':
+        id = request.POST.get('id', None)
+        name = request.POST.get('name', None)
+        description = request.POST.get('description', None)
+        load = request.POST.get('load', None)
+
+        params = {
+            'id': id,
+            'name': name,
+            'description': description,
+            'load': load
+            }
+        response = requests.post('http://127.0.0.1:3000/categories', json = params)
+        return redirect('categories')
+
+    return render(request, "administration/categoryNewView.html", {})

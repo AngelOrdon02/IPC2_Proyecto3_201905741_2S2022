@@ -7,6 +7,7 @@ import json
 # Importando modelos
 from user import User
 from resource import Resource
+from category import Category
 
 app = Flask(__name__)
 
@@ -15,12 +16,15 @@ CORS(app)
 # Declaracion de objetos
 Users = []
 Resources = []
+Categories = []
 
 # Datos ingresados
 Users.append(User(1,'Angel', '55555-9', '5-55 zona Roja', 'angel@email.com', 'root', 'root', 1))
 Users.append(User(2,'Geovanny', '55555-8', '5-56 zona Roja', 'geo@email.com', 'geo', 'geo', 1))
 
 Resources.append(Resource(1, 'Nucleo A', 'CPU', 'Ghz', 'Procesamiento', 0.03, 1))
+
+Categories.append(Category(1, 'Inter', 'Ejemplo de una descripción', 'Medio'))
 
 # --------------- INICIO RUTAS ---------------
 
@@ -185,6 +189,43 @@ def insertResource():
     )
     Resources.append(new)
     answer = jsonify({'message': 'Added resource'})
+
+    return (answer)
+
+# --------------- Category ---------------
+
+# Get resource
+@app.route('/categories', methods=['GET'])
+def selectAllCategories():
+    global Categories
+    Data = []
+
+    for category in Categories:
+        Fact = {
+            'id': category.getId(),
+            'name': category.getName(),
+            'description': category.getDescription(),
+            'load': category.getLoad()
+        }
+        Data.append(Fact)
+    
+    answer = jsonify({'categories': Data})
+
+    return (answer)
+
+# Post Category
+@app.route('/categories', methods=['POST'])
+def insertCategory():
+    global Categories
+
+    new = Category(
+        request.json['id'],
+        request.json['name'],
+        request.json['description'],
+        request.json['load']
+    )
+    Categories.append(new)
+    answer = jsonify({'message': 'Added category'})
 
     return (answer)
 

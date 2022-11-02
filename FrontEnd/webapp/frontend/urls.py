@@ -13,4 +13,6 @@ urlpatterns = [
     path('setting', views.setting, name = 'setting'),
     path('resources', views.resources, name = 'resources'),
     path('resource_new', views.add_resource, name = 'resource_new'),
+    path('categories', views.categories, name = 'categories'),
+    path('category_new', views.add_category, name = 'category_new'),
 ]
