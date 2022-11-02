@@ -106,6 +106,7 @@ def add_resource(request):
         metrics = request.POST.get('metrics', None)
         type = request.POST.get('type', None)
         worth = request.POST.get('worth', None)
+        id_config = request.POST.get('id_config', None)
 
         params = {
             'id': id,
@@ -113,7 +114,8 @@ def add_resource(request):
             'abbreviation': abbreviation,
             'metrics': metrics,
             'type': type,
-            'worth': worth
+            'worth': worth,
+            'id_config': id_config
             }
         response = requests.post('http://127.0.0.1:3000/resources', json = params)
         return redirect('resources')

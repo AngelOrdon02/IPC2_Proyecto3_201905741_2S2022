@@ -6,17 +6,19 @@
 - métrica (metrics)
 - tipo (type)
 - valor (worth)
+- id_config (id_config)
 '''
 
 class Resource:
     
-    def __init__(self, id, name, abbreviation, metrics, type, worth):
+    def __init__(self, id, name, abbreviation, metrics, type, worth, id_config):
         self.id = id
         self.name = name
         self.abbreviation = abbreviation
         self.metrics = metrics
         self.type = type
         self.worth = worth
+        self.id_config = id_config
 
     # Metodos GET y SET
     # id
@@ -60,3 +62,10 @@ class Resource:
     
     def setWorth(self, worth):
         self.worth = worth
+        
+    # id_config
+    def getId_config(self):
+        return self.id_config
+    
+    def setId_config(self, id_config):
+        self.id_config = id_config

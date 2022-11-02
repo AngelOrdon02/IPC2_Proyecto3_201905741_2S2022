@@ -20,7 +20,7 @@ Resources = []
 Users.append(User(1,'Angel', '55555-9', '5-55 zona Roja', 'angel@email.com', 'root', 'root', 1))
 Users.append(User(2,'Geovanny', '55555-8', '5-56 zona Roja', 'geo@email.com', 'geo', 'geo', 1))
 
-Resources.append(Resource(1, 'Nucleo A', 'CPU', 'Ghz', 'Procesamiento', 0.03))
+Resources.append(Resource(1, 'Nucleo A', 'CPU', 'Ghz', 'Procesamiento', 0.03, 1))
 
 # --------------- INICIO RUTAS ---------------
 
@@ -180,7 +180,8 @@ def insertResource():
         request.json['abbreviation'],
         request.json['metrics'],
         request.json['type'],
-        request.json['worth']
+        request.json['worth'],
+        request.json['id_config']
     )
     Resources.append(new)
     answer = jsonify({'message': 'Added resource'})
