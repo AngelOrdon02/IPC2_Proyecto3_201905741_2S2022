@@ -6,6 +6,7 @@ import json
 
 # Importando modelos
 from user import User
+from resource import Resource
 
 app = Flask(__name__)
 
@@ -13,11 +14,14 @@ CORS(app)
 
 # Declaracion de objetos
 Users = []
+Resources = []
 
 # Datos ingresados
 Users.append(User(1,'Angel', '55555-9', '5-55 zona Roja', 'angel@email.com', 'root', 'root', 1))
 Users.append(User(2,'Geovanny', '55555-8', '5-56 zona Roja', 'geo@email.com', 'geo', 'geo', 1))
 #Users.append(User(2,'Diego', 'Pinto', 'diego', '123', 2))
+
+Resources.append(Resource(1, 'Nucleo A', 'CPU', 'Ghz', 'Procesamiento', 0.03))
 
 # --------------- INICIO RUTAS ---------------
 
@@ -124,6 +128,30 @@ def msg_consumption():
     data_answer = request.json['data']
 
     answer = jsonify({'message': data_answer})
+    return (answer)
+
+# --------------- User ---------------
+
+# Get resource
+@app.route('/resources', methods=['GET'])
+def selectAllResources():
+    global Resources
+    Data = []
+
+    for resource in Resources:
+        Fact = {
+            'id': resource.getId(),
+            'name': resource.getName(),
+            'abbreviation': resource.getAbbreviation(),
+            'metrics': resource.getMetrics(),
+            'type': resource.getType(),
+            'worth': resource.getWorth()
+        }
+        Data.append(Fact)
+    
+    answer = jsonify({'resources': Data})
+    #answer = jsonify(Data)
+
     return (answer)
 
 # --------------- FIN RUTAS ---------------

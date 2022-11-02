@@ -75,6 +75,7 @@
                     <!-- <a class="item" onclick="goRequestsView()">Solicitudes</a> -->
                     <a class="{% block active1 %}{% endblock %} item" onclick="goConfigView()">Configuración</a>
                     <a class="{% block active2 %}{% endblock %} item" onclick="goUsersView()">Usuarios</a>
+                    <a class="{% block active3 %}{% endblock %} item" onclick="goResourcesView()">Recursos</a>
                     <label class="right item"></label>
                     <label class="right item"></label>
                     <label class="right item"></label>
@@ -217,6 +218,10 @@
 
     function goUsersView() {
         location.href = "http://localhost:8000/users"
+    }
+
+    function goResourcesView() {
+        location.href = "http://localhost:8000/resources"
     }
 </script>
 

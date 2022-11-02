@@ -85,3 +85,20 @@ def setting(request):
     #         # print("data: " + str(cont))
 
     return render(request, "administration/settingView.html", {})
+
+# Metodo para la vista resourcesView.html
+def resources(request):
+
+    #pull data from third party rest api
+    # response = requests.get('https://jsonplaceholder.typicode.com/users')
+    response = requests.get('http://127.0.0.1:3000/resources')
+
+    #convert reponse data into json
+    resources = response.json()
+    #print(users)
+    
+    # return HttpResponse("Users")
+    # return render(request, "users.html")
+    # return render(request, "users.html", {'users': users})
+    # return render(request, "users.html", {'users': users['users']})
+    return render(request, "administration/resourcesView.html", {'resources': resources['resources']})
