@@ -146,7 +146,7 @@ def msg_consumption():
     answer = jsonify({'message': data_answer})
     return (answer)
 
-# --------------- User ---------------
+# --------------- Resource ---------------
 
 # Get resource
 @app.route('/resources', methods=['GET'])
@@ -166,6 +166,24 @@ def selectAllResources():
         Data.append(Fact)
     
     answer = jsonify({'resources': Data})
+
+    return (answer)
+
+# Post resource
+@app.route('/resources', methods=['POST'])
+def insertResource():
+    global Resources
+
+    new = Resource(
+        request.json['id'],
+        request.json['name'],
+        request.json['abbreviation'],
+        request.json['metrics'],
+        request.json['type'],
+        request.json['worth']
+    )
+    Resources.append(new)
+    answer = jsonify({'message': 'Added resource'})
 
     return (answer)
 

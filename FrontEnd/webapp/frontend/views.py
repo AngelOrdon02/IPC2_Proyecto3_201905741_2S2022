@@ -95,3 +95,27 @@ def resources(request):
     resources = response.json()
 
     return render(request, "administration/resourcesView.html", {'resources': resources['resources']})
+
+# Create resource
+def add_resource(request):
+    
+    if request.method == 'POST':
+        id = request.POST.get('id', None)
+        name = request.POST.get('name', None)
+        abbreviation = request.POST.get('abbreviation', None)
+        metrics = request.POST.get('metrics', None)
+        type = request.POST.get('type', None)
+        worth = request.POST.get('worth', None)
+
+        params = {
+            'id': id,
+            'name': name,
+            'abbreviation': abbreviation,
+            'metrics': metrics,
+            'type': type,
+            'worth': worth
+            }
+        response = requests.post('http://127.0.0.1:3000/resources', json = params)
+        return redirect('resources')
+
+    return render(request, "administration/resourceNewView.html", {})

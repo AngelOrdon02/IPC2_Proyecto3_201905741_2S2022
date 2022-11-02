@@ -12,4 +12,5 @@ urlpatterns = [
     path('users', views.users, name = 'users'),
     path('setting', views.setting, name = 'setting'),
     path('resources', views.resources, name = 'resources'),
+    path('resource_new', views.add_resource, name = 'resource_new'),
 ]
