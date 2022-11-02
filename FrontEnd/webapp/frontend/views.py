@@ -6,6 +6,7 @@ import json
 
 from django.contrib import messages
 import xml.etree.ElementTree as ET
+import datetime
 
 # Home
 def home(request):
@@ -207,6 +208,9 @@ def add_instance(request):
         end = request.POST.get('end', None)
         id_config = request.POST.get('id_config', None)
         id_user = request.POST.get('id_user', None)
+
+        # start_str = datetime.datetime.strptime(str(start), '%Y/%m/%d').strftime('%Y/%m/%d')
+        # end_str = end.datetime.strftime("%d/%m/%Y")
 
         params = {
             'id': id,
