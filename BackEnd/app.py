@@ -108,6 +108,31 @@ def selectAllUsers():
 
     return (answer)
 
+# Post user
+@app.route('/users', methods=['POST'])
+def insertUser():
+    global Users
+
+    # obteniendo el ultimo id para tener un correlativo
+    # user = Users[-1]
+    # position = user.getId() + 1
+
+    new = User(
+        # position,
+        request.json['id'],
+        request.json['name'],
+        request.json['nit'],
+        request.json['address'],
+        request.json['email'],
+        request.json['username'],
+        request.json['password'],
+        request.json['user_type']
+    )
+    Users.append(new)
+    answer = jsonify({'message': 'Added user'})
+
+    return (answer)
+
 # --------------- Configuraciones ---------------
 
 # msg_config
