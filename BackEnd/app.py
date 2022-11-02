@@ -117,6 +117,15 @@ def msg_config():
     answer = jsonify({'message': data_answer})
     return (answer)
 
+# msg_consumption
+@app.route('/msg_consumption', methods=['POST'])
+def msg_consumption():
+
+    data_answer = request.json['data']
+
+    answer = jsonify({'message': data_answer})
+    return (answer)
+
 # --------------- FIN RUTAS ---------------
 
 # Para que se ejecute el API
