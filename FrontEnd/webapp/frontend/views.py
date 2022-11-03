@@ -225,3 +225,7 @@ def add_instance(request):
         return redirect('instances')
 
     return render(request, "administration/instanceNewView.html", {})
+
+# Metodo para la vista helpView.html
+def help(request):
+    return render(request, "administration/helpView.html", {})

@@ -19,4 +19,5 @@ urlpatterns = [
     path('setting_new', views.add_setting, name = 'setting_new'),
     path('instances', views.instances, name = 'instances'),
     path('instance_new', views.add_instance, name = 'instance_new'),
+    path('help', views.help, name = 'help'),
 ]
